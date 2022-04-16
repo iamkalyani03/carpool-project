@@ -48,22 +48,41 @@
     <div class="carousel-inner">
       <div class="carousel-item active">
         <img class="d-block w-100" src="./images/banner.png" height="400" alt="..." />
-        <div class="carousel-caption d-none d-md-block">
-          <input type="search" placeholder="Leaving from..." name="from" aria-haspopup="listbox"
-            aria-controls="listbox-from" aria-expanded="false" role="combobox" autocomplete="off" autocorrect="off"
-            value="">
-          <input type="search" placeholder="Going to..." name="to" aria-haspopup="listbox" aria-controls="listbox-to"
-            aria-expanded="false" role="combobox" autocomplete="off" autocorrect="off" value="">
-          <button type="submit" data-testid="kirk-search-form-submit-buttom">
-            <span>Search</span>
-          </button>
-        </div>
-        </form>
       </div>
-      </nav>
     </div>
   </div>
-  </div>
+  <section class="search-sec">
+    <div class="container">
+      <form action="#" method="post" novalidate="novalidate">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="row">
+              <div class="col-lg-3 col-md-3 col-sm-12 p-0">
+                <input type="text" class="form-control search-slt" placeholder="Enter Pickup City">
+              </div>
+              <div class="col-lg-3 col-md-3 col-sm-12 p-0">
+                <input type="text" class="form-control search-slt" placeholder="Enter Drop City">
+              </div>
+              <div class="col-lg-3 col-md-3 col-sm-12 p-0">
+                <select class="form-control search-slt" id="exampleFormControlSelect1">
+                  <option>Select Vehicle</option>
+                  <option>Example one</option>
+                  <option>Example one</option>
+                  <option>Example one</option>
+                  <option>Example one</option>
+                  <option>Example one</option>
+                  <option>Example one</option>
+                </select>
+              </div>
+              <div class="col-lg-3 col-md-3 col-sm-12 p-0">
+                <button type="button" class="btn btn-primary wrn-btn">Search</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
   <div class="container my-4">
     <div class="row mb-2">
       <div class="col-lg-4">
@@ -159,7 +178,7 @@
     </div>
   </div>
   <div class="container my-4">
-    <div class="row featurette d-flex justify-content-center align-item-center">
+    <div class="row">
       <div class="col-md-7 order-md-2">
         <h2>
           Driving in your car soon?
@@ -176,6 +195,7 @@
           alt="" />
       </div>
     </div>
+  </div>
   </div>
   </div>
   <div class="gray">
@@ -265,22 +285,23 @@
               <span>
                 <div class="white">₹600</div>
               </span>
-              <span><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                  aria-hidden="true">
+              <span>
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="24" height="24" aria-hidden="true">
                   <polyline fill="none" stroke="#708C91" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    stroke-miterlimit="10" points="9 18 15 12 9 6"></polyline>
+                    stroke-miterlimit="10" points="9 18 15 12 9 6">
+                  </polyline>
                 </svg>
               </span>
             </a>
           </div>
         </div>
-        <button type="button" class="btn btn-primary">See our most
+        <button>See our most
           popular rides</button>
       </div>
     </div>
   </div>
   </div>
-  <div class="help-center">
+  <div class="help-center p-3">
     <h2>Carpool Help Centre</h2>
   </div>
   <div class="container">
@@ -358,37 +379,67 @@
         </div>
       </div>
     </div>
-    <div class="center">
-      <svg class="bd-placeholder-img rounded-pill" width="150" height="75" xmlns="http://www.w3.org/2000/svg"
-        preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Rounded pill image: 150x75">
-        <title>Rounded pill image</title>
-        <rect width="100%" height="100%" fill="#868e96">
-        </rect>
-        <text x="50%" y="50%" fill="#dee2e6" dy=".3em">150x75</text>
-      </svg>
-    </div>
-    <div class="about">
-      <div class="row row-cols-1 py-4 row-cols-lg-3">
-        <div class="feature col">
-          <a href="#">How It Works</a>
-        </div>
-        <div class="feature col">
-          <a href="#">About Us</a>
-        </div>
-        <div class="feature col">
-          <a href="#">Help Centre</a>
-        </div>
-        <div class="feature col">
-          <a href="#">Terms and Conditions</a>
-        </div>
-        <div class="feature col">
-          <a href="#">Press</a>
-        </div>
-        <div class="feature col">
-          <a href="*">We're Hiring!</a>
+    <div class="silver">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm p-2">
+            <a href="https://support.blablacar.com/hc/en-in/sections/360004175000-How-BlaBlaCar-works">How It
+              Works</a>
+          </div>
+          <div class="col-sm p-2">
+            <a href="./help.html">Help Centre</a>
+          </div>
+          <div class="col-sm p-2">
+            <a href="https://www.blablacar.com/newsroom">Press</a>
+          </div>
         </div>
       </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-sm p-2">
+            <a href="/about-us/terms-and-conditions">About Us</a>
+          </div>
+          <div class="col-sm p-2">
+            <a href="/about-us/terms-and-conditions">Terms and Conditions</a>
+          </div>
+          <div class="col-sm p-2">
+            <a href="https://www.blablacar.com/dreamjobs">We're Hiring!</a>
+
+            <div class="p-2"><select id="footerSelectLocale">
+                <option>English</option>
+                <option>Čeština</option>
+                <option>Deutsch</option>
+                <option>English (India)</option>
+                <option>Español</option>
+                <option>Español (Mexico)</option>
+                <option>Français (Belgique)</option>
+                <option>Français</option>
+                <option>Hrvatski</option>
+                <option>Magyar</option>
+                <option>Italiano</option>
+                <option>Nederlands</option>
+                <option>Nederlands (België)</option>
+                <option>Polski</option>
+                <option>Português</option>
+                <option>Português (Brasil)</option>
+                <option>Română</option>
+                <option>Русский</option>
+                <option>Slovenčina</option>
+                <option>Srpski</option>
+                <option>Türkçe</option>
+                <option>Українська</option>
+              </select>
+              <label for="footerSelectLocale">
+                <span>Language</span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p>BlaBlaCar, 2022 ©</p>
     </div>
+  </div>
+  </div>
   </div>
 </body>
 

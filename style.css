@@ -37,3 +37,134 @@
   justify-content: center;
   border-radius: 50rem !important;
 }
+.row {
+  display: flex;
+  justify-content: center;
+  vertical-align: center;
+}
+.align {
+  justify-content: right;
+}
+.silver {
+  background-color: rgb(237, 237, 237);
+}
+.search-sec{
+  padding: 2rem;
+}
+.search-slt{
+  display: block;
+  width: 100%;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #ccc;
+  height: calc(3rem + 2px) !important;
+  border-radius:0;
+}
+.wrn-btn{
+  width: 100%;
+  font-size: 16px;
+  font-weight: 400;
+  text-transform: capitalize;
+  height: calc(3rem + 2px) !important;
+  border-radius:0;
+}
+@media (min-width: 992px){
+  .search-sec{
+      position: relative;
+      top: -114px;
+  }
+}
+
+@media (max-width: 992px){
+  .search-sec{
+      background: #1A4668;
+  }
+}
+.topbar_link{
+  padding: 8px 0;
+    background-color: transparent;
+    border: 0;
+    color: #4A4747;
+    font-weight: inherit;
+}
+.main-heading{
+  color: rgb(5, 71, 82);
+}
+.secondary-heading {
+  font-weight: 600;
+  margin-bottom: 30px;
+}
+.h4{
+  margin-bottom: 10px;
+  font-size: 20px;
+    font-weight: 600;
+    margin: 0 0 calc(16px * 1.5);
+}
+ .more {
+  display: flex;
+  font-size: 16px;
+  color: #054752;
+  flex: 1;
+  align-items: flex-end;
+}
+.blocks_title{
+  font-size: 24px;
+    font-weight: 600;
+    color: #393737;
+     margin-bottom: 0;
+}
+.title{
+  text-align: center;
+  margin-bottom: 0;
+  margin: 0 0 calc(16px * 1.5);
+  font-size: 26px;
+  color: #393737;
+}
+.customheading{
+  margin-bottom: 30px;
+  margin: 0 0 calc(16px * 1.5);
+  font-size: calc(16px * 1.5);
+  display: block;
+  margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+}
+.image{
+  height: 50px;
+}
+.heading{
+  margin-bottom: 15px;
+  margin: 0 0 calc(16px * 1.5);
+  font-size: calc(16px * 1.25);
+  font-family: inherit;
+    font-weight: bold;
+    line-height: 1.2;
+    color: inherit;
+    display: block;
+    margin-block-start: 1.33em;
+    margin-block-end: 1.33em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+.list{
+  padding: 0;
+    margin: 0;
+    list-style: none;
+    margin-block-start: 0px;
+    margin-block-end: 0px;
+    display: block;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+    font-family: 'GT-Eesti-Pro', sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #4A4747;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+}
