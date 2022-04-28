@@ -168,3 +168,16 @@
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
 }
+.h1{
+  text-align: center;
+    font-size: var(--font-size-desktop);
+    --space-bottom: 32px;
+    --font-size-desktop: 40px;
+    padding-top: 24px;
+    padding-bottom:24px ;
+    padding-left: 24px;
+    padding-right: 24px;
+    margin: 0px;
+    color: rgb(5, 71, 82);
+}
+
