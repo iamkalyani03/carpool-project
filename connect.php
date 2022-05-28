@@ -1,9 +1,8 @@
 <?php 
-$servername = "127.0.0.1";
-$username = "root";
-$password = "";
-$db_name = "carpool";
-
+$servername=!empty(getenv("MYSQL_HOST"))? getenv("MYSQL_HOST") : "127.0.0.1";
+$username=!empty(getenv("MYSQL_USERNAME"))? getenv("MYSQL_USERNAME") : "root";
+$password=!empty(getenv("MYSQL_PASSWORD"))? getenv("MYSQL_PASSWORD"):"";
+$db_name=!empty(getenv("MYSQL_DB"))?getenv("MYSQL_DB"):"carpool";
 try {
     $conn = new PDO("mysql:host=$servername;dbname=$db_name", $username, $password);
     // set the PDO error mode to exception

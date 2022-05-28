@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 28, 2022 at 11:02 PM
+-- Generation Time: May 28, 2022 at 09:22 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.4.29
 
@@ -28,21 +28,21 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `user` (
-  `email` varchar(255) NOT NULL,
-  `firstname` varchar(255) NOT NULL,
-  `lastname` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL
+  `userId` bigint(20) NOT NULL,
+  `email` varchar(256) NOT NULL,
+  `password` varchar(256) NOT NULL,
+  `firstname` varchar(50) NOT NULL,
+  `lastname` varchar(50) NOT NULL,
+  `mobile` bigint(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`email`, `firstname`, `lastname`, `password`) VALUES
-('kalyani@ee.com', 'kalyani', 'shimpi', 'Kalyani'),
-('shimpi@ds.com', 'chinmay', 'chinmay', 'shimpi'),
-('tcs@ee.com', 'Chinmay', 'Shimpi', 'Password'),
-('tuka@ram.com', 'tuka', 'ram', 'tukaram');
+INSERT INTO `user` (`userId`, `email`, `password`, `firstname`, `lastname`, `mobile`) VALUES
+(1001, 'taulauprihitra-3935@yopmail.com', 'Oracle@123', 'Oracle', 'Devata', 9876543210),
+(1010, 'taulauprihitra-3933@yopmail.com', 'Oracle@123', 'Oracleeeee', 'Devataaaa', 9191919192);
 
 --
 -- Indexes for dumped tables
@@ -52,7 +52,19 @@ INSERT INTO `user` (`email`, `firstname`, `lastname`, `password`) VALUES
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
-  ADD PRIMARY KEY (`email`);
+  ADD PRIMARY KEY (`userId`),
+  ADD UNIQUE KEY `email_index` (`email`),
+  ADD UNIQUE KEY `mob_index` (`mobile`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `user`
+--
+ALTER TABLE `user`
+  MODIFY `userId` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1011;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
