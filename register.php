@@ -66,6 +66,35 @@
     }
 ?>
 <body>
+<nav class="navbar navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand">RiderR</a>
+      <div class="kirk-topBar-right">
+        <a title="" target="_self" rel="" href="./search.html">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="24" height="24" aria-hidden="true">
+            <g fill="none" stroke="#00AFF5" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+              stroke-miterlimit="10">
+              <line x1="22" y1="22" x2="16.4" y2="16.4"></line>
+              <circle cx="10" cy="10" r="9"></circle>
+            </g>
+          </svg>Search
+        </a>
+        <a class="flex items-center mx-s large:ml-none large:mr-xl" title="" target="_self" rel="" href="./login.html">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="24" height="24" aria-hidden="true">
+            <path stroke-width="0" fill="#00AFF5" fill-rule="evenodd"
+              d="M1.14 11.5a10.36 10.36 0 1120.72 0 10.36 10.36 0 01-20.72 0zM11.5 0a11.5 11.5 0 100 23 11.5 11.5 0 000-23zm.57 6.53a.57.57 0 00-1.14 0v4.4h-4.4a.57.57 0 100 1.14h4.4v4.4a.57.57 0 101.14 0v-4.4h4.4a.57.57 0 000-1.14h-4.4z">
+            </path>
+          </svg>
+          Publish a ride</a>
+        </button>
+        <a href="./login.html">
+          <button type="button" class="btn btn-primary">Login</button>
+        </a>
+        </svg>
+      </div>
+    </div>
+    </div>
+  </nav>
 <section class="pb-4">
   <div class="bg-white border rounded-5">
     
@@ -79,14 +108,11 @@
             <div class="row gx-lg-5 align-items-center">
               <div class="col-lg-6 mb-5 mb-lg-0">
                 <h1 class="my-5 display-5 fw-bold ls-tight">
-                  The best offer <br>
-                  <span class="text-primary">for your business</span>
+                  The best rides <br>
+                  <span class="text-primary">for your journey</span>
                 </h1>
                 <p style="color: hsl(217, 10%, 50.8%)">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Eveniet, itaque accusantium odio, soluta, corrupti aliquam
-                  quibusdam tempora at cupiditate quis eum maiores libero
-                  veritatis? Dicta facilis sint aliquid ipsum atque?
+                rPool is an eco-smart option for handling all your travel needs by connecting you with fellow professional riders. As our cities are growing, increased traffic adds to the chaos and pollution. Hence, we have committed to providing a convenient, economical and sustainable solution to this problem through carpooling and bike pooling.
                 </p>
               </div>
 
