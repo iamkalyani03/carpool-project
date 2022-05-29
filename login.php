@@ -1,20 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8" />
-    <!-- Font Awesome -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
-    <!-- MDB -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.0.0/mdb.min.css" rel="stylesheet" />
-    <!-- MDB -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.0.0/mdb.min.js"></script>
-
-    <link rel="stylesheet" href="./style.css" />
-</head>
+<?php require_once 'header.php'?>
 <?php
     $err=null;
     $emailErr=null;
@@ -37,7 +24,7 @@
             }
             if(empty($emailErr) &&empty($err) && empty($passwordErr))
             {
-                $stmt=$conn->prepare("SELECT userId,firstname,lastname,email FROM user WHERE email=:email AND password=:password");
+                $stmt=$conn->prepare("SELECT userId,firstname,lastname,email,mobile FROM user WHERE email=:email AND password=:password");
                 $stmt->bindParam(':email',$email);
                 $stmt->bindParam(':password',$password);
                 try {
@@ -49,9 +36,11 @@
                             $err="Login failed";
                         }
                         else {
-                            $_SESSION["firstname"]=$rows['firstname']; 
-                            $_SESSION["lastname"]=$rows['lastname']; 
                             $_SESSION["userId"]=$rows['userId'];
+                            $_SESSION["firstname"]=$rows['firstname']; 
+                            $_SESSION["lastname"]=$rows['lastname'];
+                            $_SESSION['email']=$rows['email'];
+                            $_SESSION['mobile']=$rows['mobile'];
                             header("Location:index.php");
                         }
                     }

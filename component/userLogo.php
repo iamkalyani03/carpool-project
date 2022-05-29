@@ -14,7 +14,7 @@ $firstname=$_SESSION['firstname'];
             </li>
             <hr style="margin:0">
             <li>
-                <a class="dropdown-item" href="#">My profile</a>
+                <a class="dropdown-item" href="./profile.php">My profile</a>
             </li>
             <li>
                 <a class="dropdown-item" href="#">Settings</a>

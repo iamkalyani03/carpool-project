@@ -1,45 +1,26 @@
-    <!-- Navbar -->
-    <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
-        <!-- Container wrapper -->
-        <div class="container">
-            <!-- Navbar brand -->
-            <a class="navbar-brand me-2" href="./index.php">
-                <img src="./images/logo.png" height="30" alt="Carpool Logo" loading="lazy" style="margin-top: -1px;" />
-            </a>
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
-            <!-- Toggle button -->
-            <button class="navbar-toggler" type="button" data-mdb-toggle="collapse"
-                data-mdb-target="#navbarButtonsExample" aria-controls="navbarButtonsExample" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <i class="fas fa-bars"></i>
-            </button>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+    <!-- MDB -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.0.0/mdb.min.css" rel="stylesheet" />
+    <!-- MDB -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.0.0/mdb.min.js"></script>
 
-            <!-- Collapsible wrapper -->
-            <div class="collapse navbar-collapse text-center" id="navbarButtonsExample">
-                <!-- Right links -->
-                <div class="navbar-nav ms-auto">
-                    <div class="d-flex align-items-center">
-                        <a class="nav-link" href="#"><span><i class="fas fa-plus-circle fa-lg"></i></span> Publish
-                            Ride</a>
-                    </div>
-                    <!-- Right links -->
+    <link rel="stylesheet" href="./style.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
 
-                    <?php
-                    if(!isset($_SESSION)) 
-                    { 
-                        session_start(); 
-                    } 
-                    if(isset($_SESSION["userId"])){
-                        require 'component/userLogo.php';
-                    }
-                    else {
-                        require 'component/loginSignup.php';
-                    }
-                    ?>
-                </div>
-            </div>
-            <!-- Collapsible wrapper -->
-        </div>
-        <!-- Container wrapper -->
-    </nav>
-    <!-- Navbar -->
+    </script>
+    <script type="text/javascript" src="./js/index.js"></script>
+
+    <title>RideFast - Commute Made Simple</title>
+</head>
