@@ -1,6 +1,35 @@
 <?php
 $error="Something Went Wrong!";
+require_once 'connect.php';
+if(!isset($_SESSION)) 
+{ 
+    session_start(); 
+}
+if(!isset($_SESSION['vid']) && isset($_SESSION['userId'])){
+    $userId=$_SESSION['userId'];
+    echo "userdId->$userId";
+    $stmt=$conn->prepare("select vid,vname,vnumber from vehicle where userId=:userId");
+    $stmt->bindParam(':userId',$userId);
+    try {
+        //code...
+        if($stmt->execute())
+        {
+            $rows=$stmt->fetch(PDO::FETCH_ASSOC);
+            if(isset($rows['vid'])){
+                $_SESSION["vid"]=$rows['vid'];
+                $_SESSION["vname"]=$rows['vname'];
+                $_SESSION["vnumber"]=$rows['vnumber'];
+            }
+            $vid=$_SESSION["vid"];
+            echo "vId->$vid";
+            
+        }
+    } catch (PDOException $e) {
+        $err="Vehicle Data Failed";
+    }    
+}
 ?>
+
 <?php require_once 'header.php'?>
 <?php include 'navbar.php';?>
 
@@ -91,7 +120,7 @@ $error="Something Went Wrong!";
                                                 <?php
                                                 if(isset($_SESSION['mobile'])){
                                                     $mobile=$_SESSION['mobile'];
-                                                    echo `+91-$mobile`;
+                                                    echo "+91$mobile";
                                                 }
                                                 else {
                                                     echo $error;
@@ -119,10 +148,9 @@ $error="Something Went Wrong!";
                     <div class="accordion-collapse collapse show" aria-labelledby="headingTwo">
                         <div class="accordion-body">
                             <?php
-                            if(isset($_SESSION['vehicleId'])){
-                                
-                            }
-                            else {
+                            if(isset($_SESSION['vid'])){
+                                require_once 'vehicleDetails.php';                            
+                            } else {
                                 require_once 'vehicle.php';
                             }
                             ?>

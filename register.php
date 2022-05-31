@@ -10,7 +10,6 @@
     $passwordErr=null;
     $mobileErr=null;
     
-    $rcErr=null;
     
     require_once 'connect.php';
 

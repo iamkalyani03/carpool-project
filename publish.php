@@ -5,41 +5,50 @@
 
 <?php
     $err=null;
-    $firstnameErr=null;
-    $lastnameErr=null;
-    $emailErr=null;
-    $passwordErr=null;
-    $mobileErr=null;
-    
-    $rcErr=null;
-    
+    $pickupCityErr=null;
+    $dropCityErr=null;
+    $pickupLocationErr=null;
+    $dropLocationErr=null;
+    $pickupDateErr=null;
+    $pickupTimeErr=null;
+    $priceErr=null;
+    $passengerErr=null;
+    $vehicleErr=null;
+  
     require_once 'connect.php';
+    if(!isset($_SESSION)) {
+        session_start();
+    }
 
-	if(isset($_POST['create']))
+	if(isset($_POST['publish']))
     {
-        $firstname=$_POST['firstname'];
-        $lastname=$_POST['lastname'];
-        $email=$_POST["email"];
-        $password=$_POST["password"];
-        $mobile=$_POST['mobile'];
-        if(empty($firstname) || empty($lastname) || empty($email) ||empty($password) || empty($mobile))
+        $pickupCity=$_POST['pickupCity'];
+        echo $pickupCity;
+        $dropCity=$_POST['dropCity'];
+        $pickupLocation=$_POST['pickupLocation'];
+        $dropLocation=$_POST['dropLocation'];
+        $pickupDate=date("Y-m-d",strtotime($_POST['pickupDate']));
+        echo $pickupDate;
+        $pickupTime=strtotime($_POST['pickupTime']);
+        echo $pickupTime;
+        $price=$_POST['price'];
+        $passenger=$_POST['passenger'];
+        $vehicle=$_POST['vehicle'];
+        if(empty($pickupCity) || empty($dropCity) || empty($pickupLocation) ||empty($dropLocation) || empty($pickupDate) || empty($pickupTime) || empty($price) || empty($passenger) || empty($vehicle))
         {
             $err="Some Feilds are required<br>";
         } else {  
-            if (!preg_match("/^[a-zA-Z]*$/",$firstname)){
-                $firstnameErr = "Only letters are allowed<br>";
+            if (!preg_match("/^[a-zA-Z]*$/",$pickupCity)){
+                $pickupCityErr = "Only letters are allowed<br>";
             }
-            if(!preg_match("/^[a-zA-Z]*$/",$lastname)){
-                $lastnameErr = "Only letters are allowed<br>";
+            if(!preg_match("/^[a-zA-Z]*$/",$dropCity)){
+                $dropCityErr = "Only letters are allowed<br>";
             }
-            if (!filter_var($email, FILTER_VALIDATE_EMAIL)){
-                $emailErr = "Invalid email format<br>";
+            if(!preg_match("/^[a-zA-Z]*$/",$pickupLocation)){
+                $pickupLocationErr = "Only letters are allowed<br>";
             }
-            if(!preg_match("/^.{4,20}$/",$password)){
-                $passwordErr="Invalid Password";
-            }
-            if(!preg_match("/^[789]\d{9}$/",$mobile)){
-              $mobileErr="Invalid Mobile Number";
+            if(!preg_match("/^[a-zA-Z]*$/",$dropLocation)){
+                $dropLocationErr = "Only letters are allowed<br>";
             }
             if(empty($firstnameErr) && empty($lastnameErr) && empty($emailErr) &&empty($err) && empty($passwordErr) && empty($mobileErr))
             {
@@ -83,7 +92,7 @@
                             <div class="col-lg-6 mb-5 mb-lg-0">
                                 <div class="card">
                                     <div class="card-body py-5 px-md-5">
-                                        <form action="register.php" method="post">
+                                        <form action="publish.php" method="post">
                                             <!-- 2 column grid layout with text inputs for the first and last names -->
                                             <div class="row">
                                                 <div class="col-md-6 mb-4">
@@ -100,7 +109,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="text-center">
-                                                        <span class="error"><?php echo $firstnameErr; ?></span>
+                                                        <span class="error"><?php echo $pickupCityErr; ?></span>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6 mb-4">
@@ -117,7 +126,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="text-center">
-                                                        <span class="error"><?php echo $lastnameErr; ?></span>
+                                                        <span class="error"><?php echo $dropCityErr; ?></span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -137,7 +146,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="text-center">
-                                                        <span class="error"><?php echo $firstnameErr; ?></span>
+                                                        <span class="error"><?php echo $pickupLocationErr; ?></span>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6 mb-4">
@@ -154,7 +163,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="text-center">
-                                                        <span class="error"><?php echo $lastnameErr; ?></span>
+                                                        <span class="error"><?php echo $dropLocationErr; ?></span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -174,7 +183,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="text-center">
-                                                        <span class="error"><?php echo $mobileErr; ?></span>
+                                                        <span class="error"><?php echo $pickupDateErr; ?></span>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6 mb-4">
@@ -191,7 +200,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="text-center">
-                                                        <span class="error"><?php echo $mobileErr; ?></span>
+                                                        <span class="error"><?php echo $pickupTimeErr; ?></span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -211,7 +220,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="text-center">
-                                                        <span class="error"><?php echo $mobileErr; ?></span>
+                                                        <span class="error"><?php echo $priceErr; ?></span>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6 mb-4">
@@ -227,7 +236,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="text-center">
-                                                        <span class="error"><?php echo $mobileErr; ?></span>
+                                                        <span class="error"><?php echo $passengerErr; ?></span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -246,7 +255,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="text-center">
-                                                        <span class="error"><?php echo $lastnameErr; ?></span>
+                                                        <span class="error"><?php echo $vehicleErr; ?></span>
                                                     </div>
                                                 </div>
 
