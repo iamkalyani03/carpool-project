@@ -29,7 +29,7 @@
         $dropLocation=$_POST['dropLocation'];
         $pickupDate=date("Y-m-d",strtotime($_POST['pickupDate']));
         echo $pickupDate;
-        $pickupTime=strtotime($_POST['pickupTime']);
+        $pickupTime=date("h:i A",strtotime($_POST['pickupTime']));
         echo $pickupTime;
         $price=$_POST['price'];
         $passenger=$_POST['passenger'];
