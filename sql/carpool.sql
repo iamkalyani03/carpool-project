@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 02, 2022 at 07:49 PM
+-- Generation Time: Jun 02, 2022 at 09:15 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.4.29
 
@@ -29,6 +29,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `ride` (
   `rideId` bigint(20) NOT NULL,
+  `userId` bigint(20) NOT NULL,
   `pickupCity` varchar(256) NOT NULL,
   `dropCity` varchar(256) NOT NULL,
   `pickupLocation` varchar(256) NOT NULL,
@@ -44,8 +45,10 @@ CREATE TABLE `ride` (
 -- Dumping data for table `ride`
 --
 
-INSERT INTO `ride` (`rideId`, `pickupCity`, `dropCity`, `pickupLocation`, `dropLocation`, `pickupDate`, `pickupTime`, `price`, `passenger`, `vehicle`) VALUES
-(1, 'Nashik', 'Pune', 'Bus Stop', 'Bus Stop', '2022-06-02', '23:15:00', 400, 1, 'MH15GA0425');
+INSERT INTO `ride` (`rideId`, `userId`, `pickupCity`, `dropCity`, `pickupLocation`, `dropLocation`, `pickupDate`, `pickupTime`, `price`, `passenger`, `vehicle`) VALUES
+(2, 1001, 'Nashik', 'Pune', 'Bus Stop', 'Bus Stop', '2022-06-02', '00:14:00', 324, 1, 'MH15GA0425'),
+(3, 1001, 'Mumbai', 'Nagpur', 'Bus Stop', 'Railway Station', '2022-06-02', '16:36:00', 545, 1, 'MH15GA0425'),
+(4, 1001, 'Aurangabad', 'Pune', 'Bus Stop', 'Railway Station', '2022-06-14', '18:00:00', 567, 5, 'MH15GA0425');
 
 -- --------------------------------------------------------
 
@@ -97,7 +100,8 @@ INSERT INTO `vehicle` (`vnumber`, `userId`, `vname`) VALUES
 -- Indexes for table `ride`
 --
 ALTER TABLE `ride`
-  ADD PRIMARY KEY (`rideId`);
+  ADD PRIMARY KEY (`rideId`),
+  ADD KEY `fk_userId_ride` (`userId`);
 
 --
 -- Indexes for table `user`
@@ -122,7 +126,7 @@ ALTER TABLE `vehicle`
 -- AUTO_INCREMENT for table `ride`
 --
 ALTER TABLE `ride`
-  MODIFY `rideId` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `rideId` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `user`
@@ -133,6 +137,12 @@ ALTER TABLE `user`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `ride`
+--
+ALTER TABLE `ride`
+  ADD CONSTRAINT `fk_userId_ride` FOREIGN KEY (`userId`) REFERENCES `user` (`userId`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `vehicle`
