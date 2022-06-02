@@ -23,11 +23,11 @@
             <div class="carousel-item active">
                 <img src="./images/banner.png" class="c w-100" alt="Sunset Over the City" />
                 <div class="carousel-caption d-none d-md-block">
-                    <form method="POST">
-                        <div class="d-flex flex-row input-group">
+                    <form method="POST" action="ride.php">
+                        <div class=" d-flex flex-row input-group">
                             <span class="input-group-text bg-white search-form" id="addon-wrapping"><i
                                     class="fas fa-dot-circle" height="100px"></i></span>
-                            <input list="city" type="text" placeholder="leaving from ..."
+                            <input list="city" type="text" name="pickupCity" placeholder="leaving from ..."
                                 class="search-form form-control" />
                             <datalist id="city">
                                 <option value="Nashik">
@@ -39,14 +39,16 @@
 
                             <span class="input-group-text bg-white search-form" id="addon-wrapping"><i
                                     class=" fas fa-dot-circle"></i></span>
-                            <input list="city" type="text" placeholder="going to..." class="search-form form-control" />
+                            <input list="city" type="text" name="dropCity" placeholder="going to..."
+                                class="search-form form-control" />
 
-                            <input type="Date" placeholder="Date" class="search-form form-control"
+                            <input type="Date" name="pickupDate" placeholder="Date" class="search-form form-control"
                                 value="<?php echo date('Y-m-d'); ?>" />
 
-                            <input type="number" placeholder="No. Of Passengers" class="search-form form-control" />
+                            <input type="number" name="passenger" placeholder="No. Of Passengers"
+                                class="search-form form-control" />
+                            <input type="submit" name="ride" value="Let's Go" class="search-form btn btn-primary">
 
-                            <button class="search-form btn btn-primary">Let's GO</button>
                         </div>
                     </form>
                 </div>
