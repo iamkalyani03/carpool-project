@@ -15,7 +15,7 @@ if(!isset($_SESSION['vnumber']) && isset($_SESSION['userId'])){
         {
             $rows=$stmt->fetch(PDO::FETCH_ASSOC);
             if(isset($rows['vnumber'])){
-                header("Location:profile.php");
+                header("Refresh:0");
                 $_SESSION["vname"]=$rows['vname'];
                 $_SESSION["vnumber"]=$rows['vnumber'];
             }
@@ -164,11 +164,18 @@ if(!isset($_SESSION['vnumber']) && isset($_SESSION['userId'])){
                     </h2>
                     <div class="accordion-collapse collapse show" aria-labelledby="headingThree">
                         <div class="accordion-body">
+                            <div class="card mb-4">
+                                <div class="card-body">
+                                    <table class="table table-striped table-hover">
+                                        <?php require_once 'rideDetails.php'?>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <?php require_once 'footer.php'?>
 </body>
-<?php require_once 'footer.php'?>

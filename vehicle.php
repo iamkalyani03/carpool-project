@@ -32,7 +32,7 @@ if(isset($_POST['vehicle']))
             $stmt->bindParam(':userId',$userId);
             try {  
                 $stmt->execute();  
-                //header("Location:profile.php");
+                header("Location:profile.php");
             } catch (PDOException $e) {
                 $err="Something Went Wrong";
               if ($e->errorInfo[1] == 1062) {

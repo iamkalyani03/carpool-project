@@ -21,6 +21,7 @@
     }
 
     if(isset($_SESSION['vnumber'])){$vehicle = $_SESSION['vnumber'];}
+    if(isset($_SESSION['userId'])){$userId = $_SESSION['userId'];}
 
 	if(isset($_POST['publish']))
     {
@@ -39,18 +40,21 @@
             if(empty($pickupCityErr) && empty($dropCityErr) && empty($pickupLocationErr) && empty($dropLocationErr))
             {
                 $stmt=$conn->prepare("INSERT INTO ride(
+                    userId,
                     pickupCity,dropCity,
                     pickupLocation,dropLocation,
                     pickupDate,pickupTime,
                     price,passenger,
                     vehicle
                 ) values(
+                    :userId,
                     :pickupCity,:dropCity,
                     :pickupLocation,:dropLocation,
                     :pickupDate,:pickupTime,
                     :price,:passenger,
                     :vehicle
                     )");
+                $stmt->bindParam(':userId',$userId);
                 $stmt->bindParam(':pickupCity',$pickupCity);
                 $stmt->bindParam(':dropCity',$dropCity);
                 $stmt->bindParam(':pickupLocation',$pickupLocation);
