@@ -1,5 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php require_once 'connect.php';?>
+<?php
+$error="Something Went Wrong!";
+if(!isset($_SESSION)) 
+{ 
+    session_start(); 
+}
+if(!isset($_SESSION['vnumber']) && isset($_SESSION['userId'])){
+    $userId=$_SESSION['userId'];
+    $stmt=$conn->prepare("select vname,vnumber from vehicle where userId=:userId");
+    $stmt->bindParam(':userId',$userId);
+    try {
+        //code...
+        if($stmt->execute())
+        {
+            $rows=$stmt->fetch(PDO::FETCH_ASSOC);
+            if(isset($rows['vnumber'])){
+                $_SESSION["vname"]=$rows['vname'];
+                $_SESSION["vnumber"]=$rows['vnumber'];
+            }
+            
+        }
+    } catch (PDOException $e) {
+        $err="Vehicle Data Failed";
+    }    
+}
+?>
+
 
 <?php require_once 'header.php'?>
 
@@ -14,8 +42,6 @@
     $priceErr=null;
     $passengerErr=null;
     $vehicleErr=null;
-  
-    require_once 'connect.php';
     if(!isset($_SESSION)) {
         session_start();
     }
@@ -66,6 +92,7 @@
                 $stmt->bindParam(':vehicle',$vehicle);
                 try {
                   $stmt->execute();
+                  $_SESSION['status'] = "SUCCESS";
                 } catch (PDOException $e) {
                   if ($e->errorInfo[1] == 1062) {
                     $err="Account Details Already Exist";
@@ -78,6 +105,23 @@
 
 <body>
     <?php include 'navbar.php';?>
+    <?php
+        if(isset($_SESSION['status']))
+        {
+    ?>
+    <script>
+    swal({
+        title: "Ride Published!",
+        text: "Have a great journey!",
+        icon: "success",
+    });
+    </script>
+    <?php
+        unset($_SESSION['status']);
+        }
+    ?>
+
+
     <div class="bg-white">
         <section class="w-100 p-4">
             <!-- Section: Design Block -->
@@ -249,8 +293,9 @@
                                             <div class="row">
                                                 <div class="mb-4">
                                                     <div class="form-outline">
-                                                        <input type="text" name="vehicle" id="vehicleList"
-                                                            class="form-control" value="<?php echo $vehicle?>" />
+                                                        <input type="text" disabled name="vehicle" id="vehicleList"
+                                                            class="form-control"
+                                                            value="<?php if(isset($vehicle)){echo $vehicle;}?>" />
                                                         <label class="form-label" style="margin-left: 0px;">Vehicle
                                                             Number</label>
                                                         <div class="form-notch">

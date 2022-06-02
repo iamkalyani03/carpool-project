@@ -7,7 +7,6 @@
 $err=null;
 $vnameErr=null;
 $vnumberErr=null;
- 
 require 'connect.php';
 if(isset($_POST['vehicle']))
 {
@@ -32,7 +31,6 @@ if(isset($_POST['vehicle']))
             $stmt->bindParam(':userId',$userId);
             try {  
                 $stmt->execute();  
-                header("Location:profile.php");
             } catch (PDOException $e) {
                 $err="Something Went Wrong";
               if ($e->errorInfo[1] == 1062) {

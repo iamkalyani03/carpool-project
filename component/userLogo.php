@@ -1,6 +1,4 @@
-<?php
-$firstname=$_SESSION['firstname'];
-?>
+<?php $firstname=$_SESSION['firstname'];?>
 <div class="d-flex flex-row ms-auto align-items-center">
     <div class="dropdown">
         <a class="dropdown-toggle d-flex align-items-center hidden-arrow" href="#" id="navbarDropdownMenuAvatar"
