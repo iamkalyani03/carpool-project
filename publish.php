@@ -20,47 +20,48 @@
         session_start();
     }
 
+    if(isset($_SESSION['vnumber'])){$vehicle = $_SESSION['vnumber'];}
+
 	if(isset($_POST['publish']))
     {
         $pickupCity=$_POST['pickupCity'];
-        echo $pickupCity;
         $dropCity=$_POST['dropCity'];
         $pickupLocation=$_POST['pickupLocation'];
         $dropLocation=$_POST['dropLocation'];
-        $pickupDate=date("Y-m-d",strtotime($_POST['pickupDate']));
-        echo $pickupDate;
-        $pickupTime=date("h:i A",strtotime($_POST['pickupTime']));
-        echo $pickupTime;
+        $pickupDate=$_POST['pickupDate'];
+        $pickupTime=$_POST['pickupTime'];
         $price=$_POST['price'];
         $passenger=$_POST['passenger'];
-        $vehicle=$_POST['vehicle'];
         if(empty($pickupCity) || empty($dropCity) || empty($pickupLocation) ||empty($dropLocation) || empty($pickupDate) || empty($pickupTime) || empty($price) || empty($passenger) || empty($vehicle))
         {
             $err="Some Feilds are required<br>";
         } else {  
-            if (!preg_match("/^[a-zA-Z]*$/",$pickupCity)){
-                $pickupCityErr = "Only letters are allowed<br>";
-            }
-            if(!preg_match("/^[a-zA-Z]*$/",$dropCity)){
-                $dropCityErr = "Only letters are allowed<br>";
-            }
-            if(!preg_match("/^[a-zA-Z]*$/",$pickupLocation)){
-                $pickupLocationErr = "Only letters are allowed<br>";
-            }
-            if(!preg_match("/^[a-zA-Z]*$/",$dropLocation)){
-                $dropLocationErr = "Only letters are allowed<br>";
-            }
-            if(empty($firstnameErr) && empty($lastnameErr) && empty($emailErr) &&empty($err) && empty($passwordErr) && empty($mobileErr))
+            if(empty($pickupCityErr) && empty($dropCityErr) && empty($pickupLocationErr) && empty($dropLocationErr))
             {
-                $stmt=$conn->prepare("INSERT INTO user(email,firstname,lastname,password,mobile) values(:email,:firstname,:lastname,:password,:mobile)");
-                $stmt->bindParam(':email',$email);
-                $stmt->bindParam(':firstname',$firstname);
-                $stmt->bindParam(':lastname',$lastname);
-                $stmt->bindParam(':password',$password);
-                $stmt->bindParam(':mobile',$mobile);
+                $stmt=$conn->prepare("INSERT INTO ride(
+                    pickupCity,dropCity,
+                    pickupLocation,dropLocation,
+                    pickupDate,pickupTime,
+                    price,passenger,
+                    vehicle
+                ) values(
+                    :pickupCity,:dropCity,
+                    :pickupLocation,:dropLocation,
+                    :pickupDate,:pickupTime,
+                    :price,:passenger,
+                    :vehicle
+                    )");
+                $stmt->bindParam(':pickupCity',$pickupCity);
+                $stmt->bindParam(':dropCity',$dropCity);
+                $stmt->bindParam(':pickupLocation',$pickupLocation);
+                $stmt->bindParam(':dropLocation',$dropLocation);
+                $stmt->bindParam(':pickupDate',$pickupDate);
+                $stmt->bindParam(':pickupTime',$pickupTime);
+                $stmt->bindParam(':price',$price);
+                $stmt->bindParam(':passenger',$passenger);
+                $stmt->bindParam(':vehicle',$vehicle);
                 try {
                   $stmt->execute();
-                  header("Location:login.php");
                 } catch (PDOException $e) {
                   if ($e->errorInfo[1] == 1062) {
                     $err="Account Details Already Exist";
@@ -174,8 +175,8 @@
                                                     <div class="form-outline">
                                                         <input type="date" name="pickupDate" id="pickupDate"
                                                             class="form-control" value="<?php echo date('Y-m-d'); ?>" />
-                                                        <label class="form-label" for="price"
-                                                            style="margin-left: 0px;">Pickup Date</label>
+                                                        <label class="form-label" style="margin-left: 0px;">Pickup
+                                                            Date</label>
                                                         <div class="form-notch">
                                                             <div class="form-notch-leading" style="width: 9px;"></div>
                                                             <div class="form-notch-middle" style="width: 64.8px;"></div>
@@ -189,10 +190,10 @@
                                                 <div class="col-md-6 mb-4">
                                                     <div class="form-outline">
                                                         <input type="time" name="pickupTime" id="pickupTime"
-                                                            class="form-control"
-                                                            value="<?php $date = date("H:i", strtotime("now")); echo "$date"; ?>" />
-                                                        <label class="form-label" for="price"
-                                                            style="margin-left: 0px;">Pickup Time</label>
+                                                            class="form-control" value="<?php date_default_timezone_set("Asia/Kolkata");
+                                                             $date = date("H:i", time()); echo "$date"; ?>" />
+                                                        <label class="form-label" style="margin-left: 0px;">Pickup
+                                                            Time</label>
                                                         <div class="form-notch">
                                                             <div class="form-notch-leading" style="width: 9px;"></div>
                                                             <div class="form-notch-middle" style="width: 64.8px;"></div>
@@ -244,10 +245,10 @@
                                             <div class="row">
                                                 <div class="mb-4">
                                                     <div class="form-outline">
-                                                        <input list="vehicle" type="text" name="vehicle"
-                                                            id="vehicleList" class="form-control" />
-                                                        <label class="form-label" for="vehicleList"
-                                                            style="margin-left: 0px;">Vehicle Number</label>
+                                                        <input type="text" name="vehicle" id="vehicleList"
+                                                            class="form-control" value="<?php echo $vehicle?>" />
+                                                        <label class="form-label" style="margin-left: 0px;">Vehicle
+                                                            Number</label>
                                                         <div class="form-notch">
                                                             <div class="form-notch-leading" style="width: 9px;"></div>
                                                             <div class="form-notch-middle" style="width: 64.8px;"></div>
@@ -266,8 +267,15 @@
                                             <!-- Submit button -->
                                             <?php
                                                 if(isset($_SESSION['userId'])){
-                                                    echo '<input type="submit" name="publish" value="Publish A Ride!"
-                                                    class="btn btn-primary btn-block mb-4">';
+                                                    if(!isset($_SESSION['vnumber']))
+                                                    {
+                                                        echo '<input type="submit" disabled name="publish" value="Please Add Vehicle Details In Your Profile"
+                                                        class="btn btn-primary btn-block mb-4">';
+                                                    }
+                                                    else{
+                                                        echo '<input type="submit" name="publish" value="Publish A Ride!"
+                                                        class="btn btn-primary btn-block mb-4">';
+                                                    }
                                                 }
                                                 else {
                                                     echo '<input type="submit" disabled name="publish" value="Please Login First"

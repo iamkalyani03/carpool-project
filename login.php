@@ -53,7 +53,7 @@
 ?>
 
 <body>
-    <?php include 'header.php';?>
+    <?php include 'navbar.php';?>
     <div class="bg-white">
         <section class="w-100 p-4">
             <!-- Section: Design Block -->

@@ -5,23 +5,20 @@ if(!isset($_SESSION))
 { 
     session_start(); 
 }
-if(!isset($_SESSION['vid']) && isset($_SESSION['userId'])){
+if(!isset($_SESSION['vnumber']) && isset($_SESSION['userId'])){
     $userId=$_SESSION['userId'];
-    echo "userdId->$userId";
-    $stmt=$conn->prepare("select vid,vname,vnumber from vehicle where userId=:userId");
+    $stmt=$conn->prepare("select vname,vnumber from vehicle where userId=:userId");
     $stmt->bindParam(':userId',$userId);
     try {
         //code...
         if($stmt->execute())
         {
             $rows=$stmt->fetch(PDO::FETCH_ASSOC);
-            if(isset($rows['vid'])){
-                $_SESSION["vid"]=$rows['vid'];
+            if(isset($rows['vnumber'])){
+                header("Location:profile.php");
                 $_SESSION["vname"]=$rows['vname'];
                 $_SESSION["vnumber"]=$rows['vnumber'];
             }
-            $vid=$_SESSION["vid"];
-            echo "vId->$vid";
             
         }
     } catch (PDOException $e) {
@@ -148,7 +145,7 @@ if(!isset($_SESSION['vid']) && isset($_SESSION['userId'])){
                     <div class="accordion-collapse collapse show" aria-labelledby="headingTwo">
                         <div class="accordion-body">
                             <?php
-                            if(isset($_SESSION['vid'])){
+                            if(isset($_SESSION['vnumber'])){
                                 require_once 'vehicleDetails.php';                            
                             } else {
                                 require_once 'vehicle.php';

@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.1.3
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Jun 02, 2022 at 06:38 PM
--- Server version: 10.4.22-MariaDB
--- PHP Version: 8.1.1
+-- Host: localhost
+-- Generation Time: Jun 02, 2022 at 07:49 PM
+-- Server version: 10.4.21-MariaDB
+-- PHP Version: 7.4.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -28,7 +28,8 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `ride` (
-  `pickupCity` int(11) NOT NULL,
+  `rideId` bigint(20) NOT NULL,
+  `pickupCity` varchar(256) NOT NULL,
   `dropCity` varchar(256) NOT NULL,
   `pickupLocation` varchar(256) NOT NULL,
   `dropLocation` varchar(256) NOT NULL,
@@ -38,6 +39,13 @@ CREATE TABLE `ride` (
   `passenger` int(11) NOT NULL,
   `vehicle` varchar(256) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `ride`
+--
+
+INSERT INTO `ride` (`rideId`, `pickupCity`, `dropCity`, `pickupLocation`, `dropLocation`, `pickupDate`, `pickupTime`, `price`, `passenger`, `vehicle`) VALUES
+(1, 'Nashik', 'Pune', 'Bus Stop', 'Bus Stop', '2022-06-02', '23:15:00', 400, 1, 'MH15GA0425');
 
 -- --------------------------------------------------------
 
@@ -60,9 +68,7 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`userId`, `email`, `password`, `firstname`, `lastname`, `mobile`) VALUES
 (1001, 'taulauprihitra-3935@yopmail.com', 'Oracle@123', 'Oracle', 'Devata', 9876543210),
-(1010, 'taulauprihitra-3933@yopmail.com', 'Oracle@123', 'Oracleeeee', 'Devataaaa', 9191919192),
-(1011, 'anu@gmail.com', 'Anushka@123', 'anushka', 'shinde', 7896543021),
-(1012, 'vaishu@gmail.com', 'vaishu@123', 'vaishnavi', 'shinde', 8976543923);
+(1010, 'taulauprihitra-3933@yopmail.com', 'Oracle@123', 'Oracleeeee', 'Devataaaa', 9191919192);
 
 -- --------------------------------------------------------
 
@@ -71,7 +77,6 @@ INSERT INTO `user` (`userId`, `email`, `password`, `firstname`, `lastname`, `mob
 --
 
 CREATE TABLE `vehicle` (
-  `vid` int(11) NOT NULL,
   `vnumber` varchar(256) NOT NULL,
   `userId` bigint(20) NOT NULL,
   `vname` varchar(256) NOT NULL
@@ -81,12 +86,18 @@ CREATE TABLE `vehicle` (
 -- Dumping data for table `vehicle`
 --
 
-INSERT INTO `vehicle` (`vid`, `vnumber`, `userId`, `vname`) VALUES
-(5, 'MH15GA0425', 1011, 'Alto');
+INSERT INTO `vehicle` (`vnumber`, `userId`, `vname`) VALUES
+('MH15GA0425', 1001, 'Alto');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `ride`
+--
+ALTER TABLE `ride`
+  ADD PRIMARY KEY (`rideId`);
 
 --
 -- Indexes for table `user`
@@ -100,8 +111,7 @@ ALTER TABLE `user`
 -- Indexes for table `vehicle`
 --
 ALTER TABLE `vehicle`
-  ADD PRIMARY KEY (`vid`),
-  ADD UNIQUE KEY `vnumber_index` (`vnumber`),
+  ADD PRIMARY KEY (`vnumber`),
   ADD KEY `fk_userId` (`userId`);
 
 --
@@ -109,16 +119,16 @@ ALTER TABLE `vehicle`
 --
 
 --
+-- AUTO_INCREMENT for table `ride`
+--
+ALTER TABLE `ride`
+  MODIFY `rideId` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `userId` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1013;
-
---
--- AUTO_INCREMENT for table `vehicle`
---
-ALTER TABLE `vehicle`
-  MODIFY `vid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `userId` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1011;
 
 --
 -- Constraints for dumped tables

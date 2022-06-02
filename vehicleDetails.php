@@ -25,13 +25,13 @@
             <div class="col-sm-9">
                 <p class="text-muted mb-0">
                     <?php
-                                                if(isset($_SESSION['vnumber'])){
-                                                    echo $_SESSION['vnumber'];
-                                                }
-                                                else {
-                                                    echo $error;
-                                                }
-                                                ?>
+                        if(isset($_SESSION['vnumber'])){
+                            echo $_SESSION['vnumber'];
+                        }
+                        else {
+                            echo $error;
+                        }
+                    ?>
 
                 </p>
             </div>
