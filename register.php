@@ -49,7 +49,7 @@
                 $stmt->bindParam(':mobile',$mobile);
                 try {
                   $stmt->execute();
-                  header("Location:login.php");
+                  $_SESSION['status']="register";
                 } catch (PDOException $e) {
                   if ($e->errorInfo[1] == 1062) {
                     $err="Account Details Already Exist";
@@ -62,6 +62,21 @@
 
 <body>
     <?php include 'navbar.php';?>
+    <?php
+        if(isset($_SESSION['status']) && $_SESSION['status']=="register")
+        {
+    ?>
+    <script>
+    swal({
+        title: "Registration Successfull",
+        text: "Thank you for getting on board!",
+        icon: "success",
+    });
+    </script>
+    <?php
+         unset($_SESSION['status']);
+        }
+    ?>
     <div class="bg-white">
         <section class="w-100 p-4">
             <!-- Section: Design Block -->

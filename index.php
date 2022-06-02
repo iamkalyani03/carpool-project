@@ -5,6 +5,21 @@
 
 <body>
     <?php include 'navbar.php';?>
+    <?php
+        if(isset($_SESSION['status']) && $_SESSION['status']=="login")
+        {
+    ?>
+    <script>
+    swal({
+        title: "Login Successfull",
+        text: "Lets go on a ride!",
+        icon: "success",
+    });
+    </script>
+    <?php
+         unset($_SESSION['status']);
+        }
+    ?>
     <!-- Carousel wrapper -->
     <div id="carouselBasicExample" class="carousel slide carousel-fade" data-mdb-ride="carousel">
         <!-- Indicators -->

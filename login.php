@@ -41,6 +41,7 @@
                             $_SESSION["lastname"]=$rows['lastname'];
                             $_SESSION['email']=$rows['email'];
                             $_SESSION['mobile']=$rows['mobile'];
+                            $_SESSION['status']="login";
                             header("Location:index.php");
                         }
                     }
