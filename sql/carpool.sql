@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 30, 2022 at 09:32 PM
+-- Generation Time: Jun 02, 2022 at 06:38 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.1
 
@@ -20,6 +20,24 @@ SET time_zone = "+00:00";
 --
 -- Database: `carpool`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ride`
+--
+
+CREATE TABLE `ride` (
+  `pickupCity` int(11) NOT NULL,
+  `dropCity` varchar(256) NOT NULL,
+  `pickupLocation` varchar(256) NOT NULL,
+  `dropLocation` varchar(256) NOT NULL,
+  `pickupDate` date NOT NULL,
+  `pickupTime` time NOT NULL,
+  `price` float NOT NULL,
+  `passenger` int(11) NOT NULL,
+  `vehicle` varchar(256) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -43,7 +61,8 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`userId`, `email`, `password`, `firstname`, `lastname`, `mobile`) VALUES
 (1001, 'taulauprihitra-3935@yopmail.com', 'Oracle@123', 'Oracle', 'Devata', 9876543210),
 (1010, 'taulauprihitra-3933@yopmail.com', 'Oracle@123', 'Oracleeeee', 'Devataaaa', 9191919192),
-(1011, 'anu@gmail.com', 'Anushka@123', 'anushka', 'shinde', 7896543021);
+(1011, 'anu@gmail.com', 'Anushka@123', 'anushka', 'shinde', 7896543021),
+(1012, 'vaishu@gmail.com', 'vaishu@123', 'vaishnavi', 'shinde', 8976543923);
 
 -- --------------------------------------------------------
 
@@ -93,7 +112,7 @@ ALTER TABLE `vehicle`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `userId` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1012;
+  MODIFY `userId` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1013;
 
 --
 -- AUTO_INCREMENT for table `vehicle`
