@@ -3,6 +3,17 @@ body {
   height: 100%;
 }
 
+.wrapper {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  margin: 0 auto -400px;
+}
+
+#footer {
+  height: 400px;
+}
+
 .help-center {
   display: flex;
   justify-content: center;

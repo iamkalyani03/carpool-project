@@ -38,7 +38,7 @@
             <div class="carousel-item active">
                 <img src="./images/banner.png" class="c w-100" alt="Sunset Over the City" />
                 <div class="carousel-caption d-none d-md-block">
-                    <form method="POST" action="ride.php">
+                    <form method="POST" action="bookingList.php">
                         <div class=" d-flex flex-row input-group">
                             <span class="input-group-text bg-white search-form" id="addon-wrapping"><i
                                     class="fas fa-dot-circle" height="100px"></i></span>
@@ -58,11 +58,18 @@
                                 class="search-form form-control" />
 
                             <input type="Date" name="pickupDate" placeholder="Date" class="search-form form-control"
-                                value="<?php echo date('Y-m-d'); ?>" />
+                                value="<?php echo date('Y-m-d'); ?>" min="<?php echo date('Y-m-d');?>" />
 
                             <input type="number" name="passenger" placeholder="No. Of Passengers"
                                 class="search-form form-control" />
-                            <input type="submit" name="ride" value="Let's Go" class="search-form btn btn-primary">
+                            <?php
+                                if(isset($_SESSION['userId'])){
+                                    echo '<input type="submit" name="booking" value="Let\'s Go" class="search-form btn btn-primary">';
+                                }
+                                else {
+                                    echo '<input type="submit" disabled name="booking" value="Please Login" class="search-form btn btn-primary">';
+                                }
+                            ?>
 
                         </div>
                     </form>

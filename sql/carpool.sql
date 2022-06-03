@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 02, 2022 at 09:15 PM
+-- Generation Time: Jun 03, 2022 at 07:39 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.4.29
 
@@ -20,6 +20,30 @@ SET time_zone = "+00:00";
 --
 -- Database: `carpool`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `booking`
+--
+
+CREATE TABLE `booking` (
+  `bookingId` bigint(20) NOT NULL,
+  `rideId` bigint(20) NOT NULL,
+  `pickupUserId` bigint(20) NOT NULL,
+  `rideUserId` bigint(20) NOT NULL,
+  `passenger` int(11) NOT NULL,
+  `totalPrice` float NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `booking`
+--
+
+INSERT INTO `booking` (`bookingId`, `rideId`, `pickupUserId`, `rideUserId`, `passenger`, `totalPrice`) VALUES
+(1, 5, 1001, 1013, 1, 121),
+(2, 5, 1001, 1013, 1, 121),
+(3, 7, 1001, 1013, 1, 224);
 
 -- --------------------------------------------------------
 
@@ -48,7 +72,15 @@ CREATE TABLE `ride` (
 INSERT INTO `ride` (`rideId`, `userId`, `pickupCity`, `dropCity`, `pickupLocation`, `dropLocation`, `pickupDate`, `pickupTime`, `price`, `passenger`, `vehicle`) VALUES
 (2, 1001, 'Nashik', 'Pune', 'Bus Stop', 'Bus Stop', '2022-06-02', '00:14:00', 324, 1, 'MH15GA0425'),
 (3, 1001, 'Mumbai', 'Nagpur', 'Bus Stop', 'Railway Station', '2022-06-02', '16:36:00', 545, 1, 'MH15GA0425'),
-(4, 1001, 'Aurangabad', 'Pune', 'Bus Stop', 'Railway Station', '2022-06-14', '18:00:00', 567, 5, 'MH15GA0425');
+(4, 1001, 'Aurangabad', 'Pune', 'Bus Stop', 'Railway Station', '2022-06-14', '18:00:00', 567, 5, 'MH15GA0425'),
+(5, 1001, 'Pune', 'Mumbai', 'Railway Station', 'Railway Station', '2022-06-03', '01:02:00', 121, 1, 'MH15GA0425'),
+(6, 1001, 'Nashik', 'Pune', 'Bus Stop', 'Railway Station', '2022-06-02', '01:53:00', 232, 1, 'MH15GA0425'),
+(7, 1001, 'Pune', 'Mumbai', 'Bus Stop', 'Railway Station', '2022-06-03', '02:14:00', 224, 1, 'MH15GA0425'),
+(8, 1001, 'Mumbai', 'Mumbai', 'Bus Stop', 'Railway Station', '2022-06-02', '02:15:00', 212, 1, 'MH15GA0425'),
+(9, 1001, 'Nagpur', 'Aurangabad', 'Railway Station', 'Railway Station', '2022-06-02', '02:17:00', 333, 1, 'MH15GA0425'),
+(10, 1001, 'Pune', 'Nagpur', 'Bus Stop', 'Railway Station', '2022-06-02', '02:20:00', 234, 1, 'MH15GA0425'),
+(11, 1001, 'Pune', 'Aurangabad', 'Bus Stop', 'Bus Stop', '2022-06-02', '02:21:00', 234, 1, 'MH15GA0425'),
+(12, 1013, 'Pune', 'Mumbai', 'Bus Stop', 'Bus Stop', '2022-06-03', '02:47:00', 788, 1, 'GJ01KA2211');
 
 -- --------------------------------------------------------
 
@@ -71,7 +103,10 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`userId`, `email`, `password`, `firstname`, `lastname`, `mobile`) VALUES
 (1001, 'taulauprihitra-3935@yopmail.com', 'Oracle@123', 'Oracle', 'Devata', 9876543210),
-(1010, 'taulauprihitra-3933@yopmail.com', 'Oracle@123', 'Oracleeeee', 'Devataaaa', 9191919192);
+(1010, 'taulauprihitra-3933@yopmail.com', 'Oracle@123', 'Oracleeeee', 'Devataaaa', 9191919192),
+(1011, 'jadu@gmail.com', 'Jadu@123', 'jadu', 'mil', 9988776655),
+(1012, 'tcspostest1101@yopmail.com', 'Kalynai@123', 'kalyani', 'shimpi', 7788665544),
+(1013, 'tuka@ram.com', 'Tuka@123', 'kalyani', 'shimpi', 8877665544);
 
 -- --------------------------------------------------------
 
@@ -90,11 +125,21 @@ CREATE TABLE `vehicle` (
 --
 
 INSERT INTO `vehicle` (`vnumber`, `userId`, `vname`) VALUES
+('GJ01KA2211', 1013, 'BMW'),
 ('MH15GA0425', 1001, 'Alto');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `booking`
+--
+ALTER TABLE `booking`
+  ADD PRIMARY KEY (`bookingId`),
+  ADD KEY `fk_rideId` (`rideId`),
+  ADD KEY `fk_pickup_user` (`pickupUserId`),
+  ADD KEY `fk_ride_user` (`rideUserId`);
 
 --
 -- Indexes for table `ride`
@@ -123,20 +168,34 @@ ALTER TABLE `vehicle`
 --
 
 --
+-- AUTO_INCREMENT for table `booking`
+--
+ALTER TABLE `booking`
+  MODIFY `bookingId` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `ride`
 --
 ALTER TABLE `ride`
-  MODIFY `rideId` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `rideId` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `userId` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1011;
+  MODIFY `userId` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1014;
 
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `booking`
+--
+ALTER TABLE `booking`
+  ADD CONSTRAINT `fk_pickup_user` FOREIGN KEY (`pickupUserId`) REFERENCES `user` (`userId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_rideId` FOREIGN KEY (`rideId`) REFERENCES `ride` (`rideId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_ride_user` FOREIGN KEY (`rideUserId`) REFERENCES `user` (`userId`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `ride`

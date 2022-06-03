@@ -4,7 +4,8 @@
         <div class="container">
             <!-- Navbar brand -->
             <a class="navbar-brand me-2" href="./index.php">
-                <img src="./images/logo.png" height="30" alt="Carpool Logo" loading="lazy" style="margin-top: -1px;" />
+                <img src="https://img.icons8.com/officel/80/undefined/carpool.png" height="50" alt="Carpool Logo"
+                    loading="lazy" style="margin-top: -1px;" />
             </a>
 
             <!-- Toggle button -->
